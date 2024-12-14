@@ -3,6 +3,7 @@ package com.example.customlistview3
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
@@ -21,6 +22,8 @@ class ActivityThree : AppCompatActivity() {
     private lateinit var productNameETThree: TextView
     private lateinit var editImageIVThree: ImageView
     private lateinit var productDescriptionETThree: TextView
+    val GALERRY_REQUEST = 1
+    var photoUri: Uri? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,10 +53,33 @@ class ActivityThree : AppCompatActivity() {
         editImageIVThree.setImageURI(image)
 
 
-
+        editImageIVThree.setOnClickListener{
+            val photoPickerIntent = Intent(Intent.ACTION_PICK)
+            photoPickerIntent.type = "image/*"
+            startActivityForResult(photoPickerIntent, GALERRY_REQUEST)
+        }
 
 
     }
+
+
+
+
+
+    override fun onActivityResult(
+        requestCode: Int,
+        resultCode: Int,
+        data: Intent?,
+    ) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            GALERRY_REQUEST -> if (resultCode == RESULT_OK) {
+                photoUri = data?.data
+                editImageIVThree.setImageURI(photoUri)
+            }
+        }
+    }
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_three, menu)
