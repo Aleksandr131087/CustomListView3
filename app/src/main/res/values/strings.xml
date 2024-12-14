@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">CustomListView3</string>
+    <string name="product_name_text">Название продукта</string>
+    <string name="product_price_text">Цена продукта</string>
+    <string name="button_save_text">Сохранить</string>
+    <string name="exit_menu_text">Выход</string>
+</resources>
