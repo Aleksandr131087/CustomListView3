@@ -1,11 +1,13 @@
 package com.example.customlistview3
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -40,7 +42,7 @@ class ActivityThree : AppCompatActivity() {
         val name = product.name
         val price = product.price
         val description = product.description
-        val image: Uri? = Uri.parse(product.image.toString())
+        val image: Uri? = Uri.parse(product.image)
 
         productNameETThree.setText(name)
         productPriceETThree.setText(price)
@@ -54,14 +56,23 @@ class ActivityThree : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_exit, menu)
+        menuInflater.inflate(R.menu.menu_three, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            R.id.menu_exit -> finishAffinity()
+            R.id.menu_exit -> {finishAffinity()
+            Toast.makeText(applicationContext, "Работа завершена", Toast.LENGTH_LONG).show()}
+
+                    R.id.menu_back -> {
+val intent = Intent(this, ActivityTwo::class.java)
+                startActivity(intent)
+                        Toast.makeText(applicationContext, "Возврат на главный экран", Toast.LENGTH_LONG).show()
+
+
         }
+                    }
         return super.onOptionsItemSelected(item)
     }
 }

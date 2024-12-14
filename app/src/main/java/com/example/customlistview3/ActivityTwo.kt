@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.ListView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -124,7 +125,10 @@ class ActivityTwo : AppCompatActivity(), Removable, Updateble {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.menu_exit -> finishAffinity()
-        }
+             }
+
+        Toast.makeText(applicationContext, "Работа завершена", Toast.LENGTH_LONG).show()
+
         return super.onOptionsItemSelected(item)
     }
 
